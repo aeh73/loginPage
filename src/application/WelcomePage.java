@@ -25,17 +25,35 @@ public class WelcomePage {
 	  //private static final String TITLE = "Welcome Page";
 
 	  public WelcomePage(String username) {
+		/*
+		 * Here a new BorderPane is created and its padding is set to 20 pixels on all
+		 * sides. The BorderPane is used as the root layout for the application.
+		 */
 	    BorderPane root = new BorderPane();
 	    root.setPadding(new Insets(20, 20, 20, 20));
 
+		/*
+		 * A Label with the text "Welcome " concatenated with the username argument is
+		 * created, and set as the top component in the BorderPane.
+		 */
 	    Label welcomeLabel = new Label("Welcome " + username);
 	    root.setTop(welcomeLabel);
-
+	    
+		
+		 /* A new GridPane is created and its horizontal and vertical gaps are set to 10
+		  pixels each. The padding is set to 20 pixels on all sides.*/
+		 
 	    GridPane grid = new GridPane();
 	    grid.setHgap(10);
 	    grid.setVgap(10);
 	    grid.setPadding(new Insets(20, 20, 20, 20));
-
+	    
+		/*
+		 * These lines create new Label and TextField components for the name, category,
+		 * price, and quantity fields. The ComboBox for the  category field is also
+		 * created and pre-populated with the options "Sticker", "Case", "Capsule",
+		 * "Weapon", and "Misc"
+		 */
 	    Label nameLabel = new Label("Name:");
 	    TextField nameField = new TextField();
 	    Label categoryLabel = new Label("Category:");
