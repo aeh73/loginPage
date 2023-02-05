@@ -1,5 +1,6 @@
 package application;
 	
+import java.io.File;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -10,13 +11,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class LoginPage extends Application {
 
-  private static final int WIDTH = 450;
-  private static final int HEIGHT = 300;
+  private static final int WIDTH = 900;
+  private static final int HEIGHT = 600;
   private static final String TITLE = "Login Page";
   int failedAttempts = 0;
 
@@ -35,20 +38,20 @@ public class LoginPage extends Application {
     grid.setPadding(new Insets(25, 25, 25, 25));
 
     Label userName = new Label("User Name:");
-    grid.add(userName, 0, 1);
+    grid.add(userName, 1, 1);
 
     TextField userTextField = new TextField();
-    grid.add(userTextField, 1, 1);
+    grid.add(userTextField, 2, 1);
 
     Label pw = new Label("Password:");
-    grid.add(pw, 0, 2);
+    grid.add(pw, 1, 2);
 
     PasswordField pwBox = new PasswordField();
-    grid.add(pwBox, 1, 2);
+    grid.add(pwBox, 2, 2);
 
     
-    Button btn = new Button("Sign in");
-    btn.setOnAction(event -> {
+    Button btnLogin = new Button("Sign in");
+    btnLogin.setOnAction(event -> {
       String username = userTextField.getText();
       String password = pwBox.getText();
       userData = UserData.loadData();
@@ -79,7 +82,7 @@ public class LoginPage extends Application {
         
     });
    
-    grid.add(btn, 1, 4);
+    grid.add(btnLogin, 2, 3);
     
     Button btnRegister = new Button("Register");
     btnRegister.setOnAction(event -> {
@@ -88,11 +91,16 @@ public class LoginPage extends Application {
       userData.put(username, password);
       UserData.saveData(userData);
     });
-    grid.add(btnRegister, 2, 4);
+    grid.add(btnRegister, 3, 3);
     
     Button btnQuit = new Button("Quit");
     btnQuit.setOnAction(event -> System.exit(0));
-    grid.add(btnQuit, 3, 4);
+    grid.add(btnQuit, 4, 3);
+    
+    ImageView imageView = new ImageView(new Image(new File("user.png").toURI().toString()));
+    imageView.setFitWidth(WIDTH / 2);
+    imageView.setFitHeight(HEIGHT);
+    grid.add(imageView, 0, 0, 1, 5);
 
     Scene scene = new Scene(grid, WIDTH, HEIGHT);
     primaryStage.setScene(scene);
