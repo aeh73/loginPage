@@ -101,25 +101,33 @@ public class LoginPage extends Application {
         System.out.println("Sign in failed!..");
         //Increment the failedAttempts counter
         failedAttempts++;
-        //If the user has failed to sign in twice
-        if (failedAttempts==2) {
-          //Create an error alert to warn the user that they have one more chance
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.setTitle("Warning!");
-          alert.setHeaderText("Last chance..");
-          alert.setContentText("Becareful the app will close..");
-          alert.showAndWait();
-        //If the user has failed to sign in three or more times    
-        }else if(failedAttempts >= 3) {
-          //Create an error alert to inform the user that they have failed too many times and the app will close
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.setTitle("Error!");
-          alert.setHeaderText("Too many failed sign in attempts..");
-          alert.setContentText("Closing the app..");
-          alert.showAndWait();
-          //Close the application
-          System.exit(0);
-        }
+        //Clear text fields to be re-entered
+        userTextField.clear();
+        pwBox.clear();
+        if (failedAttempts == 1) {
+        	  //Create an error alert to warn the user that made an error
+        	  Alert alert = new Alert(Alert.AlertType.ERROR);
+        	  alert.setTitle("Warning!");
+        	  alert.setHeaderText("Incorrect username or password..");
+        	  alert.setContentText("Please try again..");
+        	  alert.showAndWait();
+        	} else if (failedAttempts == 2) {
+        	  //Create an error alert to warn the user that they have one more chance
+        	  Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        	  alert1.setTitle("Warning!");
+        	  alert1.setHeaderText("Last chance..");
+        	  alert1.setContentText("Becareful the app will close..");
+        	  alert1.showAndWait();
+        	} else if(failedAttempts >= 3) {
+        	  //Create an error alert to inform the user that they have failed too many times and the app will close
+        	  Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        	  alert1.setTitle("Error!");
+        	  alert1.setHeaderText("Too many failed sign in attempts..");
+        	  alert1.setContentText("Closing the app..");
+        	  alert1.showAndWait();
+        	  //Close the application
+        	  System.exit(0);
+        	}
       }
     });
 

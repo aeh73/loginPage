@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -16,12 +15,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class WelcomePage {
 
-	  private static final int WIDTH = 600;
-	  private static final int HEIGHT = 400;
+	  private static final int WIDTH = 900;
+	  private static final int HEIGHT = 600;
 	  //private static final String TITLE = "Welcome Page";
 
 	  public WelcomePage(String username) {
@@ -36,7 +37,8 @@ public class WelcomePage {
 		 * A Label with the text "Welcome " concatenated with the username argument is
 		 * created, and set as the top component in the BorderPane.
 		 */
-	    Label welcomeLabel = new Label("Welcome " + username);
+	    String capitalizedUsername = username.substring(0,1).toUpperCase() + username.substring(1);
+	    Label welcomeLabel = new Label("Welcome " + capitalizedUsername);
 	    root.setTop(welcomeLabel);
 	    
 		
@@ -96,8 +98,9 @@ public class WelcomePage {
 	        while (reader.hasNextLine()) {
 	          content += reader.nextLine() + "\n";
 	        }
-	        Label contentLabel = new Label(content);
-	        grid.add(contentLabel, 2, 5);
+	        TextArea contentArea = new TextArea(content);
+	        ScrollPane contentPane = new ScrollPane(contentArea);
+	        grid.add(contentPane, 2, 7);
 	      } catch (FileNotFoundException ex) {
 	        System.out.println("Error: Could not read the file.");
 	      }
@@ -138,7 +141,7 @@ public class WelcomePage {
 
 	    
 	    Stage stage = new Stage();
-	    stage.setTitle("Welcome " + username + "!!");
+	    stage.setTitle("Welcome " + capitalizedUsername + "!!");
 	    stage.setScene(new Scene(root, WIDTH, HEIGHT));
 	    stage.show();
 	  }
