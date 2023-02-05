@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 //This class extends the JavaFX Application class 
@@ -41,6 +42,8 @@ public class LoginPage extends Application {
   public void start(Stage primaryStage) {
     //Create a grid layout for the Login Page
     GridPane grid = new GridPane();
+    //Sets background colour to white using hexadecimal
+    grid.setStyle("-fx-background-color: #FFFFFF");
     //Align the grid layout to the center of the window
     grid.setAlignment(Pos.CENTER);
     //Set horizontal and vertical gaps between the grid cells
@@ -139,10 +142,10 @@ public class LoginPage extends Application {
     grid.add(btnQuit, 4, 3);
     
     //Create an ImageView object and set it to display the image located at "user.png" file
-    ImageView imageView = new ImageView(new Image(new File("user.png").toURI().toString()));
+    ImageView imageView = new ImageView(new Image(new File("user4.png").toURI().toString()));
 
     //Set the width of the image to half of the WIDTH constant value
-    imageView.setFitWidth(WIDTH / 1.5);
+    imageView.setFitWidth(WIDTH / 1.75);
 
     //Set the height of the image to the value of the HEIGHT constant
     imageView.setFitHeight(HEIGHT);
