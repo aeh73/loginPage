@@ -56,5 +56,21 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Ahmed/.m2/repository/org/sonatype/aether/aether-util/1.7/aether-util-1.7.jar" sourcepath="C:/Users/Ahmed/.m2/repository/org/sonatype/aether/aether-util/1.7/aether-util-1.7-sources.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.sonatype.aether"/>
+			<attribute name="maven.artifactId" value="aether-util"/>
+			<attribute name="maven.version" value="1.7"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Ahmed/.p2/pool/plugins/junit-platform-commons_1.9.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://junit.org/junit5/docs/current/api/"/>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
