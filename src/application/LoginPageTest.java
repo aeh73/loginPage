@@ -1,13 +1,22 @@
 package application;
 
 import org.junit.Test;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginPageTest {
 
+	
   @Test
+  //Tests correct username + password
   public void testSignInButton() {
     //Create an instance of the LoginPage class
     LoginPage loginPage = new LoginPage();
@@ -25,6 +34,7 @@ public class LoginPageTest {
   }
 
   @Test
+  //Tests wrong username 
   public void testSignInButtonWrongUsername() {
     //Create an instance of the LoginPage class
     LoginPage loginPage = new LoginPage();
@@ -42,6 +52,7 @@ public class LoginPageTest {
   }
 
   @Test
+  //Tests wrong password
   public void testSignInButtonWrongPassword() {
     //Create an instance of the LoginPage class
     LoginPage loginPage = new LoginPage();
