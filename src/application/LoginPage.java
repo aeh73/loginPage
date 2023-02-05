@@ -125,10 +125,21 @@ public class LoginPage extends Application {
       //Get the entered username and password from the text fields
       String username = userTextField.getText();
       String password = pwBox.getText();
-      //Add the entered username and password to the user data map
-      userData.put(username, password);
-      //Save the updated user data map to some storage (the details of this storage are not specified in the code)
-      UserData.saveData(userData);
+      //Check if either username or password is less than 6 characters
+      if(username.length()<6||password.length()<6) {
+    	  Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error!");
+          alert.setHeaderText("Either username or password is less than 6 characters..");
+          alert.setContentText("Please try again!..");
+          alert.showAndWait();
+      }else {
+    	  //Add the entered username and password to the user data map
+    	  userData.put(username, password);
+    	  //Save the updated user data map to some storage (the details of this storage are not specified in the code)
+    	  UserData.saveData(userData);
+      }
+      
+      
     });
 
     //Add the "Register" button to the grid
