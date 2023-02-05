@@ -30,8 +30,16 @@ public class LoginPage extends Application {
   int failedAttempts = 0;
 
   //A HashMap to store the user data (username and password)
-  private static HashMap<String, String> userData;
-
+  static HashMap<String, String> userData;
+  
+  //Methods for testing purposes
+  public boolean signInButton(String username, String password) {
+	    if (userData.containsKey(username) && userData.get(username).equals(password)) {
+	      return true;
+	    }
+	   return false;
+  }
+ 
   //Main method to launch the application
   public static void main(String[] args) {
     launch(args);
@@ -71,9 +79,8 @@ public class LoginPage extends Application {
     PasswordField pwBox = new PasswordField();
     //Add the password field to the grid layout
     grid.add(pwBox, 2, 2);
-
     
-  //Create a "Sign in" button and set an action for when it is clicked
+    //Create a "Sign in" button and set an action for when it is clicked
     Button btnLogin = new Button("Sign in");
     btnLogin.setOnAction(event -> {
       //Get the entered username and password from the text fields
@@ -137,11 +144,9 @@ public class LoginPage extends Application {
     	  userData.put(username, password);
     	  //Save the updated user data map to some storage (the details of this storage are not specified in the code)
     	  UserData.saveData(userData);
-      }
-      
-      
+      }   
     });
-
+    
     //Add the "Register" button to the grid
     grid.add(btnRegister, 3, 3);
 
@@ -163,6 +168,8 @@ public class LoginPage extends Application {
 
     //Add the imageView object to the grid at position (0,0) with a width of 1 and height of 5
     grid.add(imageView, 0, 0, 1, 5);
+    
+    
 
     Scene scene = new Scene(grid, WIDTH, HEIGHT);
     primaryStage.setScene(scene);
