@@ -1,2 +1,4 @@
-ahmed,ahmed
-admin,password
+999999,999999
+888888,888888
+ahmed1,ahmed1
+ahmed2,ahmed2
