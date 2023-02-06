@@ -2,12 +2,16 @@ package application;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -133,27 +137,55 @@ public class LoginPage extends Application {
 
     //Add the "Sign in" button to the grid
     grid.add(btnLogin, 2, 3);
-
-    //Create a "Register" button and set an action for when it is clicked
+       
     Button btnRegister = new Button("Register");
     btnRegister.setOnAction(event -> {
-      //Get the entered username and password from the text fields
-      String username = userTextField.getText();
-      String password = pwBox.getText();
-      //Check if either username or password is less than 6 characters
-      if(username.length()<6||password.length()<6) {
-    	  Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.setTitle("Error!");
-          alert.setHeaderText("Either username or password is less than 6 characters..");
-          alert.setContentText("Please try again!..");
-          alert.showAndWait();
-      }else {
-    	  //Add the entered username and password to the user data map
-    	  userData.put(username, password);
-    	  //Save the updated user data map to some storage (the details of this storage are not specified in the code)
-    	  UserData.saveData(userData);
-      }   
-    });
+    	  // Load the user data from the file
+    	  userData = UserData.loadData();
+
+    	  // Get the entered username and password from the text fields
+    	  String username = userTextField.getText();
+    	  String password = pwBox.getText();
+
+    	  // Check if either username or password is less than 6 characters
+    	  if (username.length() < 6 || password.length() < 6) {
+    	    Alert alert = new Alert(Alert.AlertType.ERROR);
+    	    alert.setTitle("Error!");
+    	    alert.setHeaderText("Either username or password is less than 6 characters..");
+    	    alert.setContentText("Please try again!..");
+    	    alert.showAndWait();
+    	  } 
+    	  // Check if the entered username already exists in the user data map
+    	  else if (userData.containsKey(username)) {
+    	    Alert alert = new Alert(Alert.AlertType.ERROR);
+    	    alert.setTitle("Error!");
+    	    alert.setHeaderText("Username already exists..");
+    	    alert.setContentText("Please choose a different username!..");
+    	    alert.showAndWait();
+    	  } 
+    	  // If both username and password are valid, add the entered username and password to the user data map and save the updated user data map
+    	  else {
+    	    // Create a confirmation alert with a message asking the user to confirm their registration
+    	    Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+    	    confirmationAlert.setTitle("Confirm Registration");
+    	    confirmationAlert.setHeaderText("Are you sure you want to register with username: " + username + "?");
+    	    confirmationAlert.setContentText("Press OK to confirm, or cancel to go back.");
+
+    	    // Show the confirmation alert and store the result in an Optional<ButtonType>
+    	    Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+    	    // Check if the result is present and if it's equal to ButtonType.OK
+    	    if (result.isPresent() && result.get() == ButtonType.OK) {
+    	      // If the result is present and equal to ButtonType.OK, add the entered username and password to the user data map and save the updated user data map
+    	      userData.put(username, password);
+    	      UserData.saveData(userData);
+    	    }else {
+    	    	//Clear text fields to be re-entered
+    	        userTextField.clear();
+    	        pwBox.clear();
+    	    }
+    	  }
+    	});
     
     //Add the "Register" button to the grid
     grid.add(btnRegister, 3, 3);

@@ -2,6 +2,7 @@ package application;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,20 +40,21 @@ public class UserData {
 	
 	// A method to save user data from a HashMap to the file
 	public static void saveData(HashMap<String, String> userData) {
-	    try {
-	      // Create a BufferedWriter object to write to the file
-	      BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME));
-	      // Write each key-value pair from the HashMap to a separate line in the file
-	      for (Map.Entry<String, String> entry : userData.entrySet()) {
-	        String line = entry.getKey() + "," + entry.getValue() + "\n";
-	        writer.write(line);
-	      }
-	      // Close the writer
-	      writer.close();
-	    } catch (IOException e) {
-	      // In case of an error, print the stack trace
-	      e.printStackTrace();
-	    }
-	}
+		  try {
+		    File file = new File(FILE_NAME);
+		    // Create a BufferedWriter object to write to the file, set the second argument to "true" to enable append mode
+		    BufferedWriter writer = new BufferedWriter(new FileWriter(file, true)); 
+		    // Write each key-value pair from the HashMap to a separate line in the file
+		    for (Map.Entry<String, String> entry : userData.entrySet()) {
+		      String line = entry.getKey() + "," + entry.getValue() + "\n";
+		      writer.write(line);
+		    }
+		    // Close the writer
+		    writer.close();
+		  } catch (IOException e) {
+		    // In case of an error, print the stack trace
+		    e.printStackTrace();
+		  }
+		}
 
 } 
