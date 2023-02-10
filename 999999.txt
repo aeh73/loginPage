@@ -1,0 +1,30 @@
+Name: sadsa
+Category: Capsule
+Price: asdas
+Quantity: asdas
+
+Name: sadsasad
+Category: Capsule
+Price: asdasad
+Quantity: asdassda
+
+Name: sadsasad
+Category: Capsule
+Price: asdasad
+Quantity: asdassda
+
+Name: asd
+Category: Case
+Price: 62t5423
+Quantity: 2t5542t42
+
+Name: 3h53h
+Category: Weapon
+Price: h3h3
+Quantity: 3hh3
+
+Name: f23
+Category: Capsule
+Price: f32f32
+Quantity: 5trt2
+

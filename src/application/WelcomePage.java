@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -48,7 +49,7 @@ public class WelcomePage {
 	    GridPane grid = new GridPane();
 	    grid.setHgap(10);
 	    grid.setVgap(10);
-	    grid.setPadding(new Insets(20, 20, 20, 20));
+	    grid.setPadding(new Insets(25, 25, 25, 25));
 	    
 		/*
 		 * These lines create new Label and TextField components for the name, category,
@@ -57,15 +58,23 @@ public class WelcomePage {
 		 * "Weapon", and "Misc"
 		 */
 	    Label nameLabel = new Label("Name:");
+	    grid.add(nameLabel, 0, 0);
 	    TextField nameField = new TextField();
+	    grid.add(nameField, 1, 0);
 	    Label categoryLabel = new Label("Category:");
+	    grid.add(categoryLabel, 0, 1);
 	    ComboBox<String> categoryComboBox = new ComboBox<>();
 	    categoryComboBox.getItems().addAll("Sticker", "Case", "Capsule", "Weapon", "Misc");
+	    grid.add(categoryComboBox, 1, 1);
 	    Label priceLabel = new Label("Price:");
+	    grid.add(priceLabel, 0, 2);
 	    TextField priceField = new TextField();
+	    grid.add(priceField, 1, 2);
 	    Label quantityLabel = new Label("Quantity:");
-	    TextField quantityField = new TextField();
-	      
+	    grid.add(quantityLabel, 0, 3);
+	    TextField quantityField = new TextField();  
+	    grid.add(quantityField, 1, 3);
+	    
 	    Button addButton = new Button("Add");
 	    addButton.setOnAction(e -> {
 	      String name = nameField.getText();
@@ -80,7 +89,7 @@ public class WelcomePage {
 	        // display the inputs in a separate pane
 	        VBox displayPane = new VBox();
 	        displayPane.setSpacing(10);
-	        displayPane.setPadding(new Insets(20, 20, 20, 20));
+	        displayPane.setPadding(new Insets(30, 30, 30, 30));
 	        displayPane.getChildren().add(new Label("Name: " + name));
 	        displayPane.getChildren().add(new Label("Category: " + category));
 	        displayPane.getChildren().add(new Label("Price: " + price));
@@ -123,39 +132,15 @@ public class WelcomePage {
 	    	    }
 	    });
 	    
-	    
-	    grid.add(nameLabel, 0, 0);
-	    grid.add(nameField, 1, 0);
-	    grid.add(categoryLabel, 0, 1);
-	    grid.add(categoryComboBox, 1, 1);
-	    grid.add(priceLabel, 0, 2);
-	    grid.add(priceField, 1, 2);
-	    grid.add(quantityLabel, 0, 3);
-	    grid.add(quantityField, 1, 3);
 	    grid.add(addButton, 1, 4);
-	    grid.add(loadButton, 2, 4);
-	    grid.add(saveButton, 3, 4);
+	    grid.add(loadButton, 1, 14);
+	    grid.add(saveButton, 2, 14);
 
 	    root.setCenter(grid);
-	    
-
-	    
+ 
 	    Stage stage = new Stage();
 	    stage.setTitle("Welcome " + capitalizedUsername + "!!");
 	    stage.setScene(new Scene(root, WIDTH, HEIGHT));
 	    stage.show();
 	  }
 	}
-//	    BorderPane displayPane = new BorderPane();
-//	    displayPane.setPadding(new Insets(20, 20, 20, 20));
-//	    Label displayLabel = new Label();
-//	    displayPane.setCenter(displayLabel);
-//	    root.setBottom(displayPane);
-//	    
-//	    nameField.setOnAction(event -> {
-//	      String name = nameField.getText();
-//	      String category = categoryComboBox.getValue();
-//	      String price = priceField.getText();
-//	      String quantity = quantityField.getText();
-//	      displayLabel.setText("Name: " + name + "\nCategory: " + category + "\nPrice: " + price + "\nQuantity: " + quantity);
-//	    });
