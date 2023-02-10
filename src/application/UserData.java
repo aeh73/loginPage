@@ -3,11 +3,17 @@ package application;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class UserData {
 
@@ -26,7 +32,9 @@ public class UserData {
 		    while ((line = reader.readLine()) != null) {
 		      // Split the line by comma and store the key-value pair in the HashMap
 		      String[] values = line.split(",");
-		      userData.put(values[0], values[1]);
+		      if (!userData.containsKey(values[0])) {
+		        userData.put(values[0], values[1]);
+		      }
 		    }
 		    // Close the reader and return the HashMap
 		    reader.close();
@@ -41,12 +49,30 @@ public class UserData {
 	// A method to save user data from a HashMap to the file
 	public static void saveData(HashMap<String, String> userData) {
 		  try {
-		    File file = new File(FILE_NAME);
-		    // Create a BufferedWriter object to write to the file, set the second argument to "true" to enable append mode
-		    BufferedWriter writer = new BufferedWriter(new FileWriter(file, true)); 
-		    // Write each key-value pair from the HashMap to a separate line in the file
+		    // Load the existing data from the file
+		    HashMap<String, String> existingData = loadData();
+
+		    // Loop through each key-value pair in the input HashMap
 		    for (Map.Entry<String, String> entry : userData.entrySet()) {
+		      // Get the key and value of the current pair
+		      String key = entry.getKey();
+		      String value = entry.getValue();
+		      // Check if the key doesn't exist in the existing data
+		      if (!existingData.containsKey(key)) {
+		        // If it doesn't, add it to the existing data
+		        existingData.put(key, value);
+		      }
+		    }
+
+		    // Create a File object for the file name
+		    File file = new File(FILE_NAME);
+		    // Create a BufferedWriter object to write to the file, with the second argument set to "false" to overwrite the file
+		    BufferedWriter writer = new BufferedWriter(new FileWriter(file, false)); 
+		    // Loop through each key-value pair in the updated HashMap
+		    for (Map.Entry<String, String> entry : existingData.entrySet()) {
+		      // Format the key-value pair as a string and add a newline character at the end
 		      String line = entry.getKey() + "," + entry.getValue() + "\n";
+		      // Write the line to the file
 		      writer.write(line);
 		    }
 		    // Close the writer
@@ -57,4 +83,9 @@ public class UserData {
 		  }
 		}
 
+	public static HashMap<String, String> readData() {
+		  HashMap<String, String> userData = new HashMap<>();
+		  // Code to read data from file and populate the userData map goes here
+		  return userData;
+		}
 } 
